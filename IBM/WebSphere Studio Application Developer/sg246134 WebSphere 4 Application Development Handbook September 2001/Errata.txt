@@ -1,0 +1,23 @@
+Redbook SG24-6134 errata.txt
+===================================================
+
+Latest update: August 16, 2001
+
+
+1. Sample code:
+   The Account EJB used in the redbook uses a CMP field named "number".
+   This is a reserved name in Oracle and will not work.
+   You have to rename the table column, and redo the mapping to the 
+   Account EJB to make this example work with Oracle.
+
+
+
+
+-------------------------------------------------
+Send comments and questions to redbook@us.ibm.com
+-------------------------------------------------
+
+
+Ueli Wahli
+IBM ITSO 
+San Jose, California

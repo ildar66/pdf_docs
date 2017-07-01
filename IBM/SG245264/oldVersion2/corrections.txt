@@ -1,0 +1,126 @@
+Corrections listing for "Programming with VisualAge for Java Version 2.0" SG24-5264
+===================================================================================
+Date: Jan. 5 1999  (updated: July 12, 2000)
+
+Comments: Send to redbook@us.ibm.com
+
+This document contains the corrections to Programming with VisualAge for Java Version 2.0.
+Make sure you install the latest fixes from www.software.ibm.com/vadd before
+reporting an error. Some problems with the examples are fixed by installing Rollup 2.
+
+Many thanks to those readers who have sent in these reports!
+
+Chapter/	Problem/Description
+Page
+
+/XX	Incorrect ftp address (page viii in Prentice Hall version of book)
+	The ftp address should be: ftp://www.redbooks.ibm.com/redbooks/SG245264. Anywhere
+	in the book you see an ftp.almaden.ibm.com address, substitute the above and
+	make sure you use lower case letters. 
+
+/xxi	spelling correction (redbook only)
+	exmaples should be examples
+
+1/6	Incorrect figure reference
+	The reference to Figure 3 on this page actually refers to Figure 2.
+
+1/9  	To create the sample applet, click Next on the first page, and mark the checkbox
+	Write example on the 4th page. Click Finish after that to generate the sample code.
+
+1/20	Code in screen capture doesn't match code in text
+	System.out.println("Loop number:' should read: 'System.out.println("Loop:'  
+	The string "number" should be removed, as it is not present in the code 
+	displayed in Figure 13, or the output in Figure 14.
+
+3/73 	BigDecimal property fails in VisualAge for Java Version 3.
+	This is a known problem in Version 3, creation of a BigDecimal property fails.
+	Circumvention: Create the property as java.math.BigInteger, then fix the code:
+	- private java.math.BigDecimal fieldBalance = new java.math.BigDecimal(0);
+	- public java.math.BigDecimal getBalance() { ... }
+	- public void setBalance(java.math.BigDecimal balance) {
+		java.math.BigDecimal oldValue = fieldBalance; 
+		...
+
+3/75,80	Confusing screen captures
+	The screen captures on page 75 shows the accountType property 
+	feature while the screen capture on page 80 shows the getAccountType()
+	method feature as well. On page 74, step h says: Select accountType from 
+	the list. This will only create the accountType property. The code will still 
+	work exactly the same way however, because a readable property implies
+	the getter method.
+
+3/80	Incorrect toString code
+	The toString method returns the bank account information as well as the 
+	transactions on the account. Although this works well for testing in this section,
+	it does not work in Chapter 6 when the toString method is used to create list
+	entries for accounts. Enter the toString method as follows:
+	public String toString() {
+		return getAccountType() + ": " + getAccountId() + " Balance: " + getBalance();
+	}
+	The results shown on page 96,97 will not show the transactions once you have made
+	this change.
+
+4/130	Incorrect Figure
+	Figure 74 shows the BookmarkListController in the itso.bookmark package.
+	It is actually in the itso.bookmark.applet package.
+
+6/220	PIN echoed to the screen
+	For a more realistic ATM you should make the PIN text field a JPasswordField
+	once you have tested the application. That way the PIN is not echoed to the 
+	screen.
+
+6/231	Incorrect list elements
+	Add getListModel().clear(); before the for loop in the fillList method of the
+	AtmAccountPanel bean.
+
+6/238	Incorrect connection references 
+	In Table 14:
+		The Comments column in the connection 14 row should say:
+			Parameter is connection 15.
+		The Connection from column in the connection 15 row should say:
+			Connection 14 parameter.
+		The Connection from column in connections 16 and 17 rows should say:
+			connection 14 normal result.
+
+6/241	Clicking Previous and then selecting the same account in AtmAccountPanel.
+	If you click the Previous button in the AtmTransactionPanel and then
+	select the same account in the AtmAccountPanel and click Next, the 
+	transactions for the account are not listed. On page 241, use the following
+	instructions in place of paragraph 1:
+	Create an event to code connection from componentShown on AtmTransactionPanel
+	to the updateTransactions method.
+
+ 7/222,225 Incorrect table and figure mapping
+	Connection 8 shown in the Figure 133 is actually connection 9 in Table 10
+	and vice-versa.
+	
+7/275	Incorrect creation of SQL specification.
+	In order for the Delete function to work correctly the MYTITLE
+	parameter must be defined in the SQL specification. Instead of 
+	entering the SQL statement directly in the SQL editor use the
+	SQL Assist to generate the query. The SQL Assist settings are as follows:
+	Table: USERID.BOOKMARKS (where USERID is the ID you are using in this chapter).
+	Condition 1: Title is exaclty equal to :MYTITLE 
+	Columns: Title and URL
+	The final SQL statement will look the same as the original in the book, but
+	VisualAge will generate the correct SQL specification for you.
+
+7/268	Incorrect package name
+	In Step 2 of "Setting the Class Path", the package name should be 
+	itso.bookmark.databeans.BookmarkListView, not itso.bookmark.BookmarkListView.
+
+9/316	Incorrect example code
+	In the changeLanguage and init methods there is an extra period after US in both methods in
+	the following lines:
+	updateGui(java.util.Locale.U.S.); in changeLanguage
+	getLanguageChoice().addItem(java.util.Locale.U.S..getDisplayLanguage()); in init
+	Remove the extra period when you create this code.
+
+10/377,378 Incorrect method call to test versions.
+	If you are using VisualAge for Java Enterprise Edition you must test
+	for not equal to isEdition() instead of equal to isVersion() for the
+	projects, packages and types in makeVersion. Ths is because there are
+	also scratch editions in the Enterprise Edition. You must also call relase()
+	after createVersion() for the types and packages.
+
+App B,385	Incorrect page numbering. Appendix B repeats pages 385 and 386.

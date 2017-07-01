@@ -1,0 +1,48 @@
+Corrections to SG24-6407
+=====================================================
+
+Latest update:  4/11/2002
+-----------------------------------------------------
+
+Exercise 4. Web Development
+
+  page 326 step 40:
+	Select Create a new Front Controller and Create view beans.
+
+  page 326 step 41:
+	Enter (not select) Inventory as prefix.
+
+
+Exercise 5. EJB Development
+
+  page 331 step 10:
+	Double-click on the Inventory bean does open the EJB editor on the bean page.
+	Double-click on the module opens the EJB editor on the first page.
+
+  page 332 step 18:
+	Promote of the ejbCreate method to the home interface can fail. 
+	If the second create method in InventoryHome is not added to the code,
+	manually change the existing create method:
+
+	from: public itso.wsad.dealer.ejb.Inventory create(java.lang.Long itemNumber) 
+			throws javax.ejb.CreateException, java.rmi.RemoteException;
+
+	to:   public itso.wsad.dealer.ejb.Inventory create(java.lang.Long itemNumber, 
+			String partNumber, int quantity, BigDecimal cost) 
+			throws javax.ejb.CreateException, java.rmi.RemoteException;
+
+  page 332 step 22:
+	Expand the ejbModule\META-INF\schema folder.
+	Edit the inventory table:
+		Double-click on ConITSOWSAD_ITSOWSAD_ITSO_MMINVENTORY.tblxmi
+		Select the Foreign key tab
+		Select the ITEMPART foreign key, and click Delete
+		Save the file and close it
+	(Without this action we cannot map the partnumber to the column,
+	 because it is a foreign key)
+
+  page 335 before step 51:
+	If you did not create the session bean (optional steps 41-50), 
+	you must perform part of step 47: 
+	- In the EJB Extension Editor, Bindings, 
+	  change the JNDI name of the Inventory bean to: itso/wsad/dealer/Inventory
